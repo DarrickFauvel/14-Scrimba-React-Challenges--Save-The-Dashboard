@@ -30,13 +30,13 @@ export default function App() {
   })
 
   const [widgetConfig, setWidgetConfig] = React.useState(
-    JSON.parse(localStorage.getItem("widgetConfig")) || DEFAULT_CONFIG
+    () => JSON.parse(localStorage.getItem("widgetConfig")) || DEFAULT_CONFIG
   )
   const [saveRequested, setSaveRequested] = React.useState(false)
 
   function save() {
-    localStorage.setItem("widgetConfig", JSON.stringify(widgetConfig))
     setSaveRequested(true) // This causes the green "Saved!" message to be rendered on line 130 below. The state then gets set back to false by the setTimeout on line 70, which removes the message.
+    localStorage.setItem("widgetConfig", JSON.stringify(widgetConfig))
   }
 
   /****** Write your code above! *******************************************************************  
